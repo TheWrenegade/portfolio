@@ -14,3 +14,110 @@ Research Statement
 Teaching Statement
 Diversity Statement
 Writing Sample(s)
+
+
+Add a dark mode:
+1. Update styles.css
+/* Light mode (default) */
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: #006699;
+  transition: color 0.3s ease;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode a {
+  color: #66ccff;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode toggle button styling */
+#darkModeToggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  color: #004466;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+body.dark-mode #darkModeToggle {
+  color: #66ccff;
+}
+
+/* Optional: place toggle in header aligned right */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+
+2. Add toggle to HTML
+<header>
+  <h1>Project Management for Collaborative Research</h1>
+  <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="research.html">Research</a>
+    <a href="service.html">Service</a>
+    <a href="cv.html">CV</a>
+  </nav>
+</header>
+
+
+3. Add js script before closing body tag
+<script>
+  const toggleBtn = document.getElementById('darkModeToggle');
+
+  // Set icon based on mode
+  function updateIcon(isDark) {
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+  }
+
+  // Initialize theme on page load
+  function initTheme() {
+    const savedPreference = localStorage.getItem('darkMode');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedPreference === null) {
+      // No saved preference, use system preference
+      document.body.classList.toggle('dark-mode', systemPrefersDark);
+      updateIcon(systemPrefersDark);
+    } else {
+      // Use saved preference
+      const isDark = savedPreference === 'true';
+      document.body.classList.toggle('dark-mode', isDark);
+      updateIcon(isDark);
+    }
+  }
+
+  // Toggle dark mode and update icon
+  toggleBtn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    updateIcon(isDark);
+  });
+
+  // Run on load
+  initTheme();
+</script>
