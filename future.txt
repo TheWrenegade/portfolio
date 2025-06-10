@@ -1,0 +1,16 @@
+Add a “Consulting” page if you start doing outside PM work
+Add “Workshops” or “Talks” if you give guest lectures or lead trainings
+Make space for “Grants” if you're PI or co-PI on major funding
+
+Create "Academia" and "Project Management" subsites
+
+Filterable publications
+
+Resources tab
+
+Add a "Job Market Materials" page (can be private or password-protected initially) with:
+CV (PDF)
+Research Statement
+Teaching Statement
+Diversity Statement
+Writing Sample(s)
