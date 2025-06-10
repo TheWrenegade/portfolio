@@ -21,6 +21,7 @@
       <a href="cv.html">CV</a>
       <a href="contact.html">Contact</a>
     </nav>
+    <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
   </header>
 
   <section id="intro">
@@ -61,6 +62,30 @@
     <p>ORCHid: <a href="https://orcid.org/0009-0009-6459-1472" target="_blank">0009-0009-6459-1472</a></p>
     <p>ResearchGate: <a href="https://www.researchgate.net/profile/Wren-Bouwman" target="_blank">https://www.researchgate.net/profile/Wren-Bouwman</a></p>
   </section>
+
+<script>
+  const toggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+
+  // Load saved mode preference if exists
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    toggle.textContent = '☀️';
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+
+    // Update toggle icon
+    if (body.classList.contains('dark-mode')) {
+      toggle.textContent = '☀️'; // Sun icon for light mode
+      localStorage.setItem('darkMode', 'enabled');
+    } else {
+      toggle.textContent = '🌙'; // Moon icon for dark mode
+      localStorage.setItem('darkMode', 'disabled');
+    }
+  });
+</script>
 
 </body>
 </html>
